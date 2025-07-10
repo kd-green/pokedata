@@ -2,9 +2,9 @@ namespace pokedataTests.ComponentTests.PagesTests.SimPagesTests
 {
     using System;
     using System.Text.RegularExpressions;
-    using Microsoft.EntityFrameworkCore;
     using Bunit;
     using NUnit.Framework;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using pokedata.Components.Pages.SimPages;
     using pokedata.Data;
@@ -33,7 +33,7 @@ namespace pokedataTests.ComponentTests.PagesTests.SimPagesTests
             var regex = new Regex(@"^[a-zA-Zà-üÀ-Ü\s'-]*$");
             if (string.IsNullOrEmpty(input))
             {
-                // No need to call IsMatch if input is null or empty
+                // no need to call IsMatch if input is null or empty
                 Assert.DoesNotThrow(() => { });
             }
             else
