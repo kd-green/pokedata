@@ -21,12 +21,12 @@
                 <ValidationMessage For="() => Sim.Title" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="firstname" class="form-label">FirstName:</label>
+                <label for="firstname" class="form-label">First Name:</label>
                 <InputText id="firstname" @bind-Value="Sim.FirstName" class="form-control" />
                 <ValidationMessage For="() => Sim.FirstName" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="lastname" class="form-label">LastName:</label>
+                <label for="lastname" class="form-label">Last Name:</label>
                 <InputText id="lastname" @bind-Value="Sim.LastName" class="form-control" />
                 <ValidationMessage For="() => Sim.LastName" class="text-danger" />
             </div>
@@ -36,27 +36,27 @@
                 <ValidationMessage For="() => Sim.Sex" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="dateofbirth" class="form-label">DateOfBirth:</label>
+                <label for="dateofbirth" class="form-label">Date Of Birth:</label>
                 <InputDate id="dateofbirth" @bind-Value="Sim.DateOfBirth" class="form-control" />
                 <ValidationMessage For="() => Sim.DateOfBirth" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="addressline1" class="form-label">AddressLine1:</label>
+                <label for="addressline1" class="form-label">Address Line 1:</label>
                 <InputText id="addressline1" @bind-Value="Sim.AddressLine1" class="form-control" />
                 <ValidationMessage For="() => Sim.AddressLine1" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="addressline2" class="form-label">AddressLine2:</label>
+                <label for="addressline2" class="form-label">Address Line 2:</label>
                 <InputText id="addressline2" @bind-Value="Sim.AddressLine2" class="form-control" />
                 <ValidationMessage For="() => Sim.AddressLine2" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="postalcode" class="form-label">PostalCode:</label>
+                <label for="postalcode" class="form-label">Postal Code:</label>
                 <InputText id="postalcode" @bind-Value="Sim.PostalCode" class="form-control" />
                 <ValidationMessage For="() => Sim.PostalCode" class="text-danger" />
             </div>
             <div class="mb-3">
-                <label for="healthcondition" class="form-label">HealthCondition:</label>
+                <label for="healthcondition" class="form-label">Health Condition:</label>
                 <InputSelect id="healthcondition" @bind-Value="Sim.HealthCondition" class="form-control">
                     @foreach (var value in Enum.GetValues(typeof(pokedata.Enums.HealthConditions)))
                     {
