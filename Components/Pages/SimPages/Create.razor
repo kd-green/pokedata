@@ -12,54 +12,59 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <EditForm method="post" Model="Sim" OnValidSubmit="AddSim" FormName="create" Enhance>
+        <EditForm Model="Sim" OnValidSubmit="AddSim">
             <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert"/>
+            <ValidationSummary class="text-danger" role="alert" />
             <div class="mb-3">
-                <label for="title" class="form-label">Title:</label> 
-                <InputText id="title" @bind-Value="Sim.Title" class="form-control" /> 
-                <ValidationMessage For="() => Sim.Title" class="text-danger" /> 
-            </div>        
+                <label for="title" class="form-label">Title:</label>
+                <InputText id="title" @bind-Value="Sim.Title" class="form-control" />
+                <ValidationMessage For="() => Sim.Title" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="firstname" class="form-label">FirstName:</label> 
-                <InputText id="firstname" @bind-Value="Sim.FirstName" class="form-control" /> 
-                <ValidationMessage For="() => Sim.FirstName" class="text-danger" /> 
-            </div>        
+                <label for="firstname" class="form-label">FirstName:</label>
+                <InputText id="firstname" @bind-Value="Sim.FirstName" class="form-control" />
+                <ValidationMessage For="() => Sim.FirstName" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="lastname" class="form-label">LastName:</label> 
-                <InputText id="lastname" @bind-Value="Sim.LastName" class="form-control" /> 
-                <ValidationMessage For="() => Sim.LastName" class="text-danger" /> 
-            </div>        
+                <label for="lastname" class="form-label">LastName:</label>
+                <InputText id="lastname" @bind-Value="Sim.LastName" class="form-control" />
+                <ValidationMessage For="() => Sim.LastName" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="sex" class="form-label">Sex:</label> 
-                <InputText id="sex" @bind-Value="Sim.Sex" class="form-control" /> 
-                <ValidationMessage For="() => Sim.Sex" class="text-danger" /> 
-            </div>        
+                <label for="sex" class="form-label">Sex:</label>
+                <InputText id="sex" @bind-Value="SexString" class="form-control" />
+                <ValidationMessage For="() => Sim.Sex" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="dateofbirth" class="form-label">DateOfBirth:</label> 
-                <InputDate id="dateofbirth" @bind-Value="Sim.DateOfBirth" class="form-control" /> 
-                <ValidationMessage For="() => Sim.DateOfBirth" class="text-danger" /> 
-            </div>        
+                <label for="dateofbirth" class="form-label">DateOfBirth:</label>
+                <InputDate id="dateofbirth" @bind-Value="Sim.DateOfBirth" class="form-control" />
+                <ValidationMessage For="() => Sim.DateOfBirth" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="addressline1" class="form-label">AddressLine1:</label> 
-                <InputText id="addressline1" @bind-Value="Sim.AddressLine1" class="form-control" /> 
-                <ValidationMessage For="() => Sim.AddressLine1" class="text-danger" /> 
-            </div>        
+                <label for="addressline1" class="form-label">AddressLine1:</label>
+                <InputText id="addressline1" @bind-Value="Sim.AddressLine1" class="form-control" />
+                <ValidationMessage For="() => Sim.AddressLine1" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="addressline2" class="form-label">AddressLine2:</label> 
-                <InputText id="addressline2" @bind-Value="Sim.AddressLine2" class="form-control" /> 
-                <ValidationMessage For="() => Sim.AddressLine2" class="text-danger" /> 
-            </div>        
+                <label for="addressline2" class="form-label">AddressLine2:</label>
+                <InputText id="addressline2" @bind-Value="Sim.AddressLine2" class="form-control" />
+                <ValidationMessage For="() => Sim.AddressLine2" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="postalcode" class="form-label">PostalCode:</label> 
-                <InputText id="postalcode" @bind-Value="Sim.PostalCode" class="form-control" /> 
-                <ValidationMessage For="() => Sim.PostalCode" class="text-danger" /> 
-            </div>        
+                <label for="postalcode" class="form-label">PostalCode:</label>
+                <InputText id="postalcode" @bind-Value="Sim.PostalCode" class="form-control" />
+                <ValidationMessage For="() => Sim.PostalCode" class="text-danger" />
+            </div>
             <div class="mb-3">
-                <label for="healthcondition" class="form-label">HealthCondition:</label> 
-                <InputText id="healthcondition" @bind-Value="Sim.HealthCondition" class="form-control" /> 
-                <ValidationMessage For="() => Sim.HealthCondition" class="text-danger" /> 
-            </div>        
+                <label for="healthcondition" class="form-label">HealthCondition:</label>
+                <InputSelect id="healthcondition" @bind-Value="Sim.HealthCondition" class="form-control">
+                    @foreach (var value in Enum.GetValues(typeof(pokedata.Enums.HealthConditions)))
+                    {
+                        <option value="@value">@value</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Sim.HealthCondition" class="text-danger" />
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </EditForm>
     </div>
@@ -72,6 +77,17 @@
 @code {
     [SupplyParameterFromForm]
     private Sim Sim { get; set; } = new();
+
+    // Helper property for binding char as string
+    private string SexString
+    {
+        get => Sim.Sex.ToString();
+        set
+        {
+            if (!string.IsNullOrEmpty(value))
+                Sim.Sex = value[0];
+        }
+    }
 
     // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
     private async Task AddSim()

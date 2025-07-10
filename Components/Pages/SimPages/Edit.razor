@@ -18,9 +18,9 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm method="post" Model="Sim" OnValidSubmit="UpdateSim" FormName="edit" Enhance>
+            <EditForm Model="Sim" OnValidSubmit="UpdateSim">
                 <DataAnnotationsValidator />
-                <ValidationSummary role="alert"/>
+                <ValidationSummary role="alert" />
                 <input type="hidden" name="Sim.Id" value="@Sim.Id" />
                 <div class="mb-3">
                     <label for="title" class="form-label">Title:</label>
@@ -39,7 +39,7 @@ else
                 </div>
                 <div class="mb-3">
                     <label for="sex" class="form-label">Sex:</label>
-                    <InputText id="sex" @bind-Value="Sim.Sex" class="form-control" />
+                    <InputText id="sex" @bind-Value="SexString" class="form-control" />
                     <ValidationMessage For="() => Sim.Sex" class="text-danger" />
                 </div>
                 <div class="mb-3">
@@ -64,7 +64,12 @@ else
                 </div>
                 <div class="mb-3">
                     <label for="healthcondition" class="form-label">HealthCondition:</label>
-                    <InputText id="healthcondition" @bind-Value="Sim.HealthCondition" class="form-control" />
+                    <InputSelect id="healthcondition" @bind-Value="Sim.HealthCondition" class="form-control">
+                        @foreach (var value in Enum.GetValues(typeof(pokedata.Enums.HealthConditions)))
+                        {
+                            <option value="@value">@value</option>
+                        }
+                    </InputSelect>
                     <ValidationMessage For="() => Sim.HealthCondition" class="text-danger" />
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -83,6 +88,17 @@ else
 
     [SupplyParameterFromForm]
     private Sim? Sim { get; set; }
+
+    // Helper property for binding char as string
+    private string SexString
+    {
+        get => Sim?.Sex.ToString() ?? string.Empty;
+        set
+        {
+            if (Sim != null && !string.IsNullOrEmpty(value))
+                Sim.Sex = value[0];
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
