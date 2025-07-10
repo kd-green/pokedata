@@ -1,8 +1,10 @@
 ﻿@page "/sims"
 @using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using pokedata.Model
 @using pokedata.Data
+@attribute [Authorize] // allows restriction of access to only authenticated users
 @implements IAsyncDisposable
 @inject IDbContextFactory<pokedata.Data.pokedataContext> DbFactory
 
