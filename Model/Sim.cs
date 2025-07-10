@@ -12,12 +12,12 @@
         public string? Title { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-zà-üÀ-Ü\s'-]*$")]
+        [RegularExpression(@"^[a-zA-zà-üÀ-Ü\s'-][*\[\]]*$")]
         [MaxLength(26)] // In line with HMRC name length limits
         public string FirstName { get; set; }
 
         [Required]
-        [RegularExpression(@"^[a-zA-zà-üÀ-Ü\s'-]*$")]
+        [RegularExpression(@"^[a-zA-zà-üÀ-Ü\s'-][*\[\]]*$")]
         [MaxLength(26)]
         public string LastName { get; set; }
 
