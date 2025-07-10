@@ -81,6 +81,66 @@
                     AddressLine2 = "Belladonna Cove",
                     PostalCode = "BC59PR",
                     HealthCondition = HealthConditions.Epilepsy
+                },
+                new Sim
+                {
+                    Title = "Ms",
+                    FirstName = "Lilith",
+                    LastName = "Pleasant",
+                    Sex = 'F',
+                    DateOfBirth = new DateTime(2004, 1, 5),
+                    AddressLine1 = "215 Sim Lane",
+                    AddressLine2 = "Pleasantview",
+                    PostalCode = "PV17WO",
+                    HealthCondition = HealthConditions.Endometriosis
+                },
+                new Sim
+                {
+                    Title = "Mr",
+                    FirstName = "Joshua",
+                    LastName = "Ruben",
+                    Sex = 'M',
+                    DateOfBirth = new DateTime(2002, 11, 19),
+                    AddressLine1 = "20 Peanut Street",
+                    AddressLine2 = "Sim State",
+                    PostalCode = "SS86VC",
+                    HealthCondition = HealthConditions.MultipleSclerosis
+                },
+                new Sim
+                {
+                    Title = "Mr",
+                    FirstName = "Frances",
+                    LastName = "Worthington",
+                    Sex = 'F',
+                    DateOfBirth = new DateTime(2003, 12, 14),
+                    AddressLine1 = "134 Aridestra Drive",
+                    AddressLine2 = "La Fiesta",
+                    PostalCode = "LF32LU",
+                    HealthCondition = HealthConditions.AtrialFibrillation
+                },
+                new Sim
+                {
+                    Title = "Ms",
+                    FirstName = "Roxie",
+                    LastName = "Sharpe",
+                    Sex = 'F',
+                    DateOfBirth = new DateTime(2002, 5, 30),
+                    AddressLine1 = "58 Focaccia Place",
+                    AddressLine2 = "Le Tour",
+                    PostalCode = "LT41GK",
+                    HealthCondition = HealthConditions.Epilepsy
+                },
+                new Sim
+                {
+                    Title = "Ms",
+                    FirstName = "Jill",
+                    LastName = "Smith",
+                    Sex = 'F',
+                    DateOfBirth = new DateTime(2008, 9, 12),
+                    AddressLine1 = "101 Road to Nowhere",
+                    AddressLine2 = "Strangetown",
+                    PostalCode = "ST25MC",
+                    HealthCondition = HealthConditions.Asthma
                 }
             );
         }
