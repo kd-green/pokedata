@@ -10,11 +10,18 @@
 
 <h1>Index</h1>
 
+<div>
+    <form action="/sims" data-enhance>
+        <input type="search" name="nameFilter" />
+        <input type="submit" value="Search" />
+    </form>
+</div>
+
 <p>
     <a href="sims/create">Create New</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Sim">
+<QuickGrid Class="table" Items="SimsFiltered">
     <PropertyColumn Property="sim => sim.Title" />
     <PropertyColumn Property="sim => sim.FirstName" />
     <PropertyColumn Property="sim => sim.LastName" />
@@ -41,4 +48,10 @@
     }
 
     public async ValueTask DisposeAsync() => await context.DisposeAsync();
+
+    [SupplyParameterFromQuery]
+    private string? NameFilter { get; set; }
+
+    private IQueryable<Sim> SimsFiltered =>
+        context.Sim.Where(s => s.FirstName!.Contains(NameFilter ?? string.Empty) || s.LastName!.Contains(NameFilter ?? string.Empty));
 }
