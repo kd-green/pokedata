@@ -1,0 +1,62 @@
+﻿@page "/sims/details"
+@using Microsoft.EntityFrameworkCore
+@using pokedata.Model
+@inject IDbContextFactory<pokedata.Data.pokedataContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Sim</h2>
+    <hr />
+    @if (sim is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Title</dt>
+            <dd class="col-sm-10">@sim.Title</dd>
+            <dt class="col-sm-2">FirstName</dt>
+            <dd class="col-sm-10">@sim.FirstName</dd>
+            <dt class="col-sm-2">LastName</dt>
+            <dd class="col-sm-10">@sim.LastName</dd>
+            <dt class="col-sm-2">Sex</dt>
+            <dd class="col-sm-10">@sim.Sex</dd>
+            <dt class="col-sm-2">DateOfBirth</dt>
+            <dd class="col-sm-10">@sim.DateOfBirth</dd>
+            <dt class="col-sm-2">AddressLine1</dt>
+            <dd class="col-sm-10">@sim.AddressLine1</dd>
+            <dt class="col-sm-2">AddressLine2</dt>
+            <dd class="col-sm-10">@sim.AddressLine2</dd>
+            <dt class="col-sm-2">PostalCode</dt>
+            <dd class="col-sm-10">@sim.PostalCode</dd>
+            <dt class="col-sm-2">HealthCondition</dt>
+            <dd class="col-sm-10">@sim.HealthCondition</dd>
+        </dl>
+        <div>
+            <a href="@($"/sims/edit?id={sim.Id}")">Edit</a> |
+            <a href="@($"/sims")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Sim? sim;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        sim = await context.Sim.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (sim is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

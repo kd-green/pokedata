@@ -1,0 +1,44 @@
+﻿@page "/sims"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using pokedata.Model
+@using pokedata.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<pokedata.Data.pokedataContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="sims/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Sim">
+    <PropertyColumn Property="sim => sim.Title" />
+    <PropertyColumn Property="sim => sim.FirstName" />
+    <PropertyColumn Property="sim => sim.LastName" />
+    <PropertyColumn Property="sim => sim.Sex" />
+    <PropertyColumn Property="sim => sim.DateOfBirth" />
+    <PropertyColumn Property="sim => sim.AddressLine1" />
+    <PropertyColumn Property="sim => sim.AddressLine2" />
+    <PropertyColumn Property="sim => sim.PostalCode" />
+    <PropertyColumn Property="sim => sim.HealthCondition" />
+
+    <TemplateColumn Context="sim">
+        <a href="@($"sims/edit?id={sim.Id}")">Edit</a> |
+        <a href="@($"sims/details?id={sim.Id}")">Details</a> |
+        <a href="@($"sims/delete?id={sim.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private pokedataContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

@@ -4,8 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using pokedata.Components;
 using pokedata.Components.Account;
 using pokedata.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContextFactory<pokedataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("pokedataContext") ?? throw new InvalidOperationException("Connection string 'pokedataContext' not found.")));
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -47,6 +52,7 @@ else
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+    app.UseMigrationsEndPoint();
 }
 
 app.UseHttpsRedirection();
