@@ -2,6 +2,7 @@
 
 namespace pokedata.Enums
 {
+    using System.ComponentModel;
     public enum HealthConditions
     {
         // sourced from https://www.ncbi.nlm.nih.gov/books/NBK263824/
