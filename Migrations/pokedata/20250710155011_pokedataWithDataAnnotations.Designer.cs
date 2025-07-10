@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pokedata.Data;
 
@@ -11,9 +12,11 @@ using pokedata.Data;
 namespace pokedata.Migrations.pokedata
 {
     [DbContext(typeof(pokedataContext))]
-    partial class pokedataContextModelSnapshot : ModelSnapshot
+    [Migration("20250710155011_pokedataWithDataAnnotations")]
+    partial class pokedataWithDataAnnotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
