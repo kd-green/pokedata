@@ -1,6 +1,8 @@
 ﻿@page "/sims/edit"
 @using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Authorization
 @using pokedata.Model
+@attribute [Authorize] // allows restriction of access to only authenticated users
 @inject IDbContextFactory<pokedata.Data.pokedataContext> DbFactory
 @inject NavigationManager NavigationManager
 
