@@ -8,14 +8,15 @@
     {
         public int Id { get; set; }
 
+        [MaxLength(12)]
         public string? Title { get; set; }
 
         [Required]
-        [StringLength(26)] // In line with HMRC name length limits
+        [MaxLength(26)] // In line with HMRC name length limits
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(26)]
+        [MaxLength(26)]
         public string LastName { get; set; }
 
         [Required]
@@ -24,6 +25,7 @@
         public char Sex { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         public DateOnly DateOfBirth { get; set; }
 
         [Required]
