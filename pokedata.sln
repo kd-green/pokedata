@@ -5,7 +5,12 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedata", "pokedata.csproj", "{5F846C0A-005D-421C-851A-7C191DC8043E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokedataTests", "pokedataTests\pokedataTests.csproj", "{2C5C812F-92A6-4FFD-93FA-A394763FBB01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedataTests", "pokedataTests\pokedataTests.csproj", "{2C5C812F-92A6-4FFD-93FA-A394763FBB01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FAE3AAB7-A9EC-457A-BF95-1799D1163216}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
