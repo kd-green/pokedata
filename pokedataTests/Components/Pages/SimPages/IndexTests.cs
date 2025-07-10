@@ -4,19 +4,19 @@ namespace pokedataTests.ComponentTests.PagesTests.SimPagesTests
     using System.Text.RegularExpressions;
     using Microsoft.EntityFrameworkCore;
     using Bunit;
+    using NUnit.Framework;
     using Microsoft.Extensions.DependencyInjection;
     using pokedata.Components.Pages.SimPages;
     using pokedata.Data;
     using pokedata.Model;
 
-    public class IndexRazorTests : TestContext
+    public class IndexRazorTests : Bunit.TestContext
     {
         private class TestDbContextFactory : IDbContextFactory<pokedataContext>
         {
             private readonly pokedataContext _context;
             public TestDbContextFactory(pokedataContext context) => _context = context;
             public pokedataContext CreateDbContext() => _context;
-            public pokedata.Components.Pages.SimPages.Index Index { get; set; } = new pokedata.Components.Pages.SimPages.Index();
         }
 
         [TestCase(null)]
@@ -80,8 +80,6 @@ namespace pokedataTests.ComponentTests.PagesTests.SimPagesTests
                 new Sim { Id = 3, FirstName = "Émilie", LastName = "Dubois", AddressLine1 = "TestAddress1", AddressLine2 = "TestAddress2", PostalCode = "AA11AA" }
             );
             db.SaveChanges();
-
-            this.Services.AddSingleton<IDbContextFactory<pokedataContext>>(new TestDbContextFactory(db));
 
             // Act
             var filtered = db.Sim.Where(s =>
