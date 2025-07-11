@@ -37,7 +37,7 @@
             <dd class="col-sm-10">@sim.HealthCondition</dd>
         </dl>
         <div>
-            <a href="@($"/sims/edit?id={sim.Id}")">Edit</a> |
+            <AuthorizeView><Authorized><a href="@($"/sims/edit?id={sim.Id}")">Edit</a> |</Authorized></AuthorizeView>
             <a href="@($"/sims")">Back to List</a>
         </div>
     }

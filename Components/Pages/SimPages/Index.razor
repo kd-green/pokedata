@@ -4,7 +4,6 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using pokedata.Model
 @using pokedata.Data
-@attribute [Authorize] // allows restriction of access to only authenticated users
 @implements IAsyncDisposable
 @inject IDbContextFactory<pokedata.Data.pokedataContext> DbFactory
 
@@ -20,7 +19,7 @@
 </div>
 
 <p>
-    <a href="sims/create">Create New</a>
+    <AuthorizeView><Authorized><a href="sims/create">Create New</a></Authorized></AuthorizeView>
 </p>
 
 <QuickGrid Class="table" Items="SimsFiltered">
@@ -35,9 +34,9 @@
     <PropertyColumn Property="sim => sim.HealthCondition" />
 
     <TemplateColumn Context="sim">
-        <a href="@($"sims/edit?id={sim.Id}")">Edit</a> |
-        <a href="@($"sims/details?id={sim.Id}")">Details</a> |
-        <a href="@($"sims/delete?id={sim.Id}")">Delete</a>
+        <AuthorizeView><Authorized><a href="@($"sims/edit?id={sim.Id}")">Edit</a> |</Authorized></AuthorizeView>
+        <a href="@($"sims/details?id={sim.Id}")">Details</a>
+        <AuthorizeView><Authorized> |<a href="@($"sims/delete?id={sim.Id}")">Delete</a></Authorized></AuthorizeView>
     </TemplateColumn>
 </QuickGrid>
 
